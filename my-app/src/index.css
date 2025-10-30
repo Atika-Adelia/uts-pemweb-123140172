@@ -1,13 +1,126 @@
+/* src/index.css (Styling sesuai UI/UX Dark Theme) */
+
+/* Type Selector */
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-family: 'Arial', sans-serif;
+    background-color: #1a1a2e; /* Darker Background */
+    color: #f0f0f0;
+    margin: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.container {
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Flexbox untuk Navbar */
+.navbar {
+    display: flex; /* Flexbox */
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #0f0f1d;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+.navbar a {
+    color: #61dafb; /* React Blue */
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+/* Kombinasi Selector & Pseudo-classes */
+.navbar a:hover {
+    text-decoration: underline; /* Pseudo-classes */
+    color: #90ee90;
+}
+
+/* Filter Layout dengan CSS Grid */
+.filter-grid {
+    display: grid; /* CSS Grid */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #24243b; /* Card Background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.filter-grid input, .filter-grid select, .refresh-btn, .back-button, .submit-btn {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #4a4a6e;
+    background-color: #333350;
+    color: #f0f0f0;
+}
+
+.refresh-btn {
+    background-color: #4CAF50;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.refresh-btn:hover { /* Pseudo-classes */
+    background-color: #45a049;
+}
+
+.positive { color: #16c784; }
+.negative { color: #ea3943; }
+
+/* Tabel Styling */
+.crypto-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #24243b;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.crypto-table th, .crypto-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #333350;
+    text-align: left;
+}
+
+.crypto-table thead th {
+    background-color: #1f1f33;
+    font-weight: bold;
+    color: #61dafb;
+}
+
+/* Pseudo-classes */
+.crypto-table tbody tr:hover {
+    background-color: #2e2e4e; 
+    cursor: pointer;
+}
+
+/* Portfolio Card & Detail Card */
+.portfolio-card, .chart-container {
+    background-color: #24243b;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    margin-top: 30px;
+}
+
+/* Media Queries untuk Responsiveness */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .filter-grid {
+        grid-template-columns: 1fr; /* 1 kolom di mobile */
+    }
+    .crypto-table, .crypto-table thead, .crypto-table tbody, .crypto-table th, .crypto-table td, .crypto-table tr {
+        display: block;
+    }
+    .crypto-table thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
 }
