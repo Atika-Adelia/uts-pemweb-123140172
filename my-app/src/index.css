@@ -1,11 +1,9 @@
-/* src/index.css (Styling sesuai UI/UX Dark Theme) */
-
-/* Type Selector */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #1a1a2e; /* Darker Background */
-    color: #f0f0f0;
+    font-family: 'Roboto Mono', monospace;
+    background-color: #0d1117; 
+    color: #e6edf3; 
     margin: 0;
+    line-height: 1.6;
 }
 
 .container {
@@ -14,113 +12,164 @@ body {
     margin: 0 auto;
 }
 
-/* Flexbox untuk Navbar */
 .navbar {
-    display: flex; /* Flexbox */
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
-    background-color: #0f0f1d;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+    padding: 16px 32px;
+    background-color: #161b22;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    border-bottom: 1px solid #2f3742;
 }
 
 .navbar a {
-    color: #61dafb; /* React Blue */
+    color: #58a6ff;
     text-decoration: none;
-    margin-left: 20px;
+    font-weight: 500;
+    margin-left: 24px;
+    transition: color 0.2s ease;
 }
 
-/* Kombinasi Selector & Pseudo-classes */
 .navbar a:hover {
-    text-decoration: underline; /* Pseudo-classes */
-    color: #90ee90;
+    color: #79c0ff; 
+    text-decoration: underline;
 }
 
-/* Filter Layout dengan CSS Grid */
 .filter-grid {
-    display: grid; /* CSS Grid */
+    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 15px;
-    margin-bottom: 30px;
+    margin: 30px 0;
     padding: 20px;
-    background-color: #24243b; /* Card Background */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    background-color: #161b22;
+    border-radius: 12px;
+    border: 1px solid #2f3742;
 }
 
-.filter-grid input, .filter-grid select, .refresh-btn, .back-button, .submit-btn {
+.filter-grid input,
+.filter-grid select,
+.refresh-btn,
+.back-button,
+.submit-btn {
     padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #4a4a6e;
-    background-color: #333350;
-    color: #f0f0f0;
+    border-radius: 6px;
+    border: 1px solid #2f3742;
+    background-color: #0d1117;
+    color: #e6edf3;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
 }
 
+.filter-grid input:focus,
+.filter-grid select:focus {
+    outline: none;
+    border-color: #58a6ff;
+}
+
+/* Refresh Button */
 .refresh-btn {
-    background-color: #4CAF50;
+    background-color: #238636;
+    border: none;
+    font-weight: 600;
     cursor: pointer;
-    font-weight: bold;
 }
 
-.refresh-btn:hover { /* Pseudo-classes */
-    background-color: #45a049;
+.refresh-btn:hover {
+    background-color: #2ea043;
 }
 
-.positive { color: #16c784; }
-.negative { color: #ea3943; }
-
-/* Tabel Styling */
 .crypto-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-    background-color: #24243b;
-    border-radius: 10px;
+    background-color: #161b22;
+    border-radius: 12px;
     overflow: hidden;
+    border: 1px solid #2f3742;
 }
 
-.crypto-table th, .crypto-table td {
-    padding: 12px 15px;
-    border-bottom: 1px solid #333350;
+.crypto-table th,
+.crypto-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #2f3742;
     text-align: left;
 }
 
 .crypto-table thead th {
-    background-color: #1f1f33;
-    font-weight: bold;
-    color: #61dafb;
+    background-color: #0d1117;
+    color: #f6f6f6;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
 }
 
-/* Pseudo-classes */
 .crypto-table tbody tr:hover {
-    background-color: #2e2e4e; 
+    background-color: #1c2128;
     cursor: pointer;
 }
 
-/* Portfolio Card & Detail Card */
-.portfolio-card, .chart-container {
-    background-color: #24243b;
+.positive {
+    color: #16c784;
+    font-weight: 500;
+}
+
+.negative {
+    color: #ea3943;
+    font-weight: 500;
+}
+
+.portfolio-card,
+.chart-container {
+    background-color: #161b22;
     padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    border: 1px solid #2f3742;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     margin-top: 30px;
 }
 
-/* Media Queries untuk Responsiveness */
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
         align-items: flex-start;
+        gap: 10px;
     }
+
     .filter-grid {
-        grid-template-columns: 1fr; /* 1 kolom di mobile */
+        grid-template-columns: 1fr;
     }
-    .crypto-table, .crypto-table thead, .crypto-table tbody, .crypto-table th, .crypto-table td, .crypto-table tr {
+
+    .crypto-table,
+    .crypto-table thead,
+    .crypto-table tbody,
+    .crypto-table th,
+    .crypto-table td,
+    .crypto-table tr {
         display: block;
     }
+
     .crypto-table thead tr {
         position: absolute;
         top: -9999px;
         left: -9999px;
     }
+
+    .crypto-table td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+    }
+
+    .crypto-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #58a6ff;
+    }
 }
+
+
+
+
