@@ -1,20 +1,23 @@
 import React, { useState, useMemo } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useCryptoData } from './hooks/useCryptoData';
-import CryptoTable from './components/DataTable.jsx'; 
+import DataTable from './components/DataTable.jsx'; 
 import FilterForm from './components/FilterForm.jsx';   
 import RefreshButton from './components/RefreshButton.jsx';
-import CryptoDetail from './components/DetailCard.jsx'; 
+import DetailCard from './components/DetailCard.jsx'; 
 import PortfolioCalculator from './components/PortfolioCalculator.jsx'; 
+import CompareWidget from './components/Compare.jsx'; 
+import Navbar from './components/Header.jsx'; 
+
 import './index.css'; 
 
-const Home = ({ data, loading, error, fetchData }) => {
-    const [filter, setFilter] = useState({ name: '', minPrice: 0, maxPrice: Infinity, sort: 'market_cap_desc', volumeRange: 0 });
+const DashboardHome = ({ data, loading, error, fetchData }) => {
+    const [tableFilter, setTableFilter] = useState({ name: '', minPrice: 0, maxPrice: Infinity, sort: 'market_cap_desc', volumeRange: 0 });
 
     const filteredAndSortedData = useMemo(() => {
         if (!data || data.length === 0) return [];
         
-        const { name, minPrice, maxPrice, volumeRange, sort } = filter; 
+        const { name, minPrice, maxPrice, volumeRange, sort } = tableFilter; 
 
         let filtered = data
             .filter(coin => {
@@ -30,12 +33,12 @@ const Home = ({ data, loading, error, fetchData }) => {
             return b.market_cap - a.market_cap;
         });
 
-    }, [data, filter]); 
+    }, [data, tableFilter]); 
 
-    if (loading) return <div className="container"><h2>Memuat Data Market...</h2></div>; 
+    if (loading) return <div className="main-content"><h2>Memuat Data Market...</h2></div>; 
     
     if (error) return (
-        <div className="container" style={{ color: '#ea3943', backgroundColor: '#331a1a', padding: '20px', borderRadius: '8px' }}>
+        <div className="main-content" style={{ color: '#ea3943', backgroundColor: '#ffe6e6', padding: '20px', borderRadius: '8px' }}>
             <h2>⚠️ Koneksi API Gagal</h2>
             <p><strong>Pesan:</strong> {error}</p>
             <p>Silakan tunggu 1-2 menit dan coba muat ulang data.</p>
@@ -44,19 +47,24 @@ const Home = ({ data, loading, error, fetchData }) => {
     ); 
 
     return (
-        <div className="container">
+        <div className="main-content">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
                 <h2>💰 Cryptocurrency Market List</h2>
                 <RefreshButton onClick={fetchData} loading={loading} />
             </div>
+        
+            <FilterForm onFilterChange={setTableFilter} />
             
-            <FilterForm onFilterChange={setFilter} />
-   
-            <CryptoTable data={filteredAndSortedData} /> 
+            <DataTable data={filteredAndSortedData} /> 
 
-            <div className="portfolio-card">
-                <PortfolioCalculator price={data.find(c => c.id === 'bitcoin')?.current_price || 0} /> 
+            <div className="card compare-widget">
+                <CompareWidget allCoins={data} /> 
             </div>
+          
+            <div className="card portfolio-card">
+                <PortfolioCalculator allCoins={data} /> 
+            </div>
+
         </div>
     );
 };
@@ -66,21 +74,19 @@ const App = () => {
 
     return (
         <Router>
-            <div className="navbar">
-                <h1 id="main-header">Crypto Tracker</h1> {/* ID Selector */}
-                <nav>
-                    <Link to="/">Market</Link>
-                    {/* INI BELUM DIUBAH (BESOK DIUBAH) */}
-                </nav>
-            </div>
-            
-            <Routes>
-                <Route path="/" element={
+            <div className="app-layout">
 
-                    <Home data={data} loading={loading} error={error} fetchData={fetchData} />
-                } />
-                <Route path="/detail/:coinId" element={<CryptoDetail />} /> 
-            </Routes>
+                <Navbar /> 
+                <Routes>
+                    <Route path="/" element={
+                        <DashboardHome data={data} loading={loading} error={error} fetchData={fetchData} />
+                    } />
+                    <Route 
+                        path="/detail/:coinId" 
+                        element={<DetailCard allCoins={data} />} 
+                    /> 
+                </Routes>
+            </div>
         </Router>
     );
 };

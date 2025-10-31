@@ -1,43 +1,33 @@
-// src/components/CompareWidget.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const CompareWidget = ({ allCoins }) => {
-    // State untuk menyimpan koin yang dipilih di dropdown
+    const [compareList, setCompareList] = useState(['bitcoin', 'ethereum']); //untuk perbandingan
     const [selectedCoinToAdd, setSelectedCoinToAdd] = useState('');
-    // State untuk menyimpan daftar koin yang akan dibandingkan
-    const [compareList, setCompareList] = useState(['bitcoin', 'ethereum']); // Default
     
     const navigate = useNavigate();
 
-    // Fungsi untuk menambah koin ke daftar
     const handleAddCoin = () => {
         if (selectedCoinToAdd && !compareList.includes(selectedCoinToAdd)) {
             setCompareList([...compareList, selectedCoinToAdd]);
-            setSelectedCoinToAdd(''); // Reset dropdown
+            setSelectedCoinToAdd(''); 
         }
     };
 
-    // Fungsi untuk menghapus koin dari daftar
     const handleRemoveCoin = (coinIdToRemove) => {
         setCompareList(compareList.filter(id => id !== coinIdToRemove));
     };
 
-    // Fungsi untuk tombol "Compare Now"
     const handleCompareClick = () => {
-        // Logika ini bisa diarahkan ke halaman detail koin pertama
-        // atau ke halaman /compare khusus jika Anda membuatnya.
         if (compareList.length > 0) {
-            navigate(`/detail/${compareList[0]}`); 
+            navigate(`/detail/${compareList[0]}`); //ke halaman detail koin pertama di list tableeeee
         }
     };
 
     return (
-        // Menggunakan class 'card' dan 'compare-widget' dari index.css
         <div className="card compare-widget">
             <h4>Compare Cryptos</h4>
-            
-            {/* Menampilkan daftar koin yang sudah ada di list */}
+        
             {compareList.map(coinId => {
                 const coin = allCoins.find(c => c.id === coinId);
                 return coin && (
@@ -46,7 +36,6 @@ const CompareWidget = ({ allCoins }) => {
                             <img src={coin.image} alt={coin.name} style={{ width: '20px', borderRadius: '50%' }} />
                             {coin.name}
                         </span>
-                        {/* Tombol X untuk menghapus */}
                         <button className="remove-btn" onClick={() => handleRemoveCoin(coin.id)}>
                             &times; 
                         </button>
@@ -54,7 +43,6 @@ const CompareWidget = ({ allCoins }) => {
                 );
             })}
 
-            {/* Input untuk menambah koin baru ke daftar */}
             <div className="add-compare-input">
                 <select 
                     value={selectedCoinToAdd} 
@@ -62,7 +50,7 @@ const CompareWidget = ({ allCoins }) => {
                 >
                     <option value="">Add to Compare</option>
                     {allCoins.map(coin => (
-                        <option key={coin.id} value={coin.id}>
+                        <option key={coin.id} value={coin.id} disabled={compareList.includes(coin.id)}>
                             {coin.name}
                         </option>
                     ))}
@@ -70,7 +58,6 @@ const CompareWidget = ({ allCoins }) => {
                 <button onClick={handleAddCoin}>+</button>
             </div>
 
-            {/* Tombol Hijau "Compare Now" */}
             <button className="compare-action-btn" onClick={handleCompareClick}>
                 Compare Now
             </button>
