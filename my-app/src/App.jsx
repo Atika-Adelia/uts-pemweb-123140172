@@ -8,7 +8,6 @@ import DetailCard from './components/DetailCard.jsx';
 import PortfolioCalculator from './components/PortfolioCalculator.jsx'; 
 import CompareWidget from './components/Compare.jsx'; 
 import Navbar from './components/Header.jsx'; 
-
 import './index.css'; 
 
 const DashboardHome = ({ data, loading, error, fetchData }) => {
@@ -81,10 +80,35 @@ const App = () => {
                     <Route path="/" element={
                         <DashboardHome data={data} loading={loading} error={error} fetchData={fetchData} />
                     } />
+
                     <Route 
                         path="/detail/:coinId" 
                         element={<DetailCard allCoins={data} />} 
                     /> 
+                    <Route 
+                        path="/portfolio" 
+                        element={
+                            <div className="main-content">
+                                <h2>Portfolio Calculator</h2>
+                                <div className="card portfolio-card">
+                                    <PortfolioCalculator allCoins={data} />
+                                </div>
+                            </div>
+                        } 
+                    />
+
+                    <Route 
+                        path="/compare" 
+                        element={
+                            <div className="main-content">
+                                <h2>Compare Cryptos</h2>
+                                <div className="card compare-widget">
+                                    <CompareWidget allCoins={data} />
+                                </div>
+                            </div>
+                        } 
+                    />
+
                 </Routes>
             </div>
         </Router>

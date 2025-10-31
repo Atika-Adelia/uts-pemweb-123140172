@@ -8,11 +8,11 @@ const CryptoTable = ({ data }) => {
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Nama</th>
-                    <th>Harga</th> 
+                    <th>Name</th>
+                    <th>Price</th> 
                     <th>Market Cap</th>
-                    <th>24h %</th>
-                    <th>Aksi</th>
+                    <th>24h% Change</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>

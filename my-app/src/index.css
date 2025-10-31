@@ -1,15 +1,12 @@
-/* src/index.css (Tema GitHub Anda + Layout Navbar Atas) */
-
-/* --- Variabel CSS (Berdasarkan Tema Warna Anda) --- */
 :root {
-    --bg-primary: #0d1117; /* Latar belakang utama Anda */
-    --bg-secondary: #161b22; /* Latar belakang kartu/elemen Anda */
-    --border-color: #2f3742; /* Warna border Anda */
-    --text-primary: #e6edf3; /* Teks utama Anda */
-    --text-secondary: #b0b0b0; /* Teks abu-abu (saya tambahkan) */
-    --primary-blue: #58a6ff; /* Aksen biru Anda */
-    --success-green: #16c784; /* Warna positif (hijau) */
-    --danger-red: #ea3943; /* Warna negatif (merah) */
+    --bg-primary: #0d1117; 
+    --bg-secondary: #161b22; 
+    --border-color: #2f3742; 
+    --text-primary: #e6edf3; 
+    --text-secondary: #b0b0b0; 
+    --primary-blue: #58a6ff; 
+    --success-green: #16c784; 
+    --danger-red: #ea3943; 
 
     --spacing-sm: 10px;
     --spacing-md: 15px;
@@ -22,15 +19,17 @@
     --font-size-xl: 1.5rem;
 }
 
-/* --- Global Reset & Body Styling --- */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+body, button, input, select, label, h1, h2, h3, h4, h5, h6, table, th, td {
+    font-family: 'Roboto Mono', monospace !important;
+}
+
 body {
-    font-family: 'Roboto Mono', monospace; /* Font Anda */
     background-color: var(--bg-primary); 
     color: var(--text-primary); 
     margin: 0;
@@ -43,15 +42,13 @@ body {
     height: 100%;
 }
 
-/* --- Layout Aplikasi (Navbar di Atas) --- */
 .app-layout {
     display: flex;
-    flex-direction: column; /* Navbar di atas, konten di bawah */
+    flex-direction: column; 
     min-height: 100vh;
 }
 
-/* --- Styling Navbar (Menggunakan style Anda) --- */
-.app-navbar { /* Menggunakan .app-navbar agar konsisten dengan Navbar.jsx */
+.app-navbar { 
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -81,7 +78,7 @@ body {
 }
 
 .navbar-links a {
-    color: var(--primary-blue); /* Aksen biru Anda */
+    color: var(--primary-blue); 
     text-decoration: none;
     font-weight: 500;
     transition: color 0.2s ease;
@@ -93,13 +90,11 @@ body {
     text-decoration: underline;
 }
 
-
-/* --- Main Content Styling (Memusatkan layout) --- */
 .main-content {
     flex-grow: 1; 
     padding: var(--spacing-xl);
-    max-width: 1200px; /* Batasi lebar konten */
-    margin: 0 auto; /* Pusatkan konten */
+    max-width: 1200px; 
+    margin: 0 auto; 
 }
 
 .main-content h2 {
@@ -107,18 +102,15 @@ body {
     margin-bottom: var(--spacing-lg);
 }
 
-/* --- Universal Card Styling (Untuk Compare & Portfolio) --- */
 .card {
     background-color: var(--bg-secondary);
     padding: var(--spacing-lg);
     border-radius: 12px;
     border: 1px solid var(--border-color);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    margin-bottom: var(--spacing-xl); /* Jarak antar kartu */
+    margin-bottom: var(--spacing-xl); 
 }
 
-
-/* --- Form Elements Styling (Menggunakan style Anda) --- */
 label {
     display: block;
     margin-bottom: var(--spacing-xs);
@@ -154,37 +146,43 @@ button {
     cursor: pointer;
     font-size: var(--font-size-md);
     font-weight: bold;
-    transition: background-color 0.2s ease-in-out;
+    transition: all 0.25s ease-in-out;
 }
 
-/* Refresh Button (Menggunakan style Anda) */
 .refresh-button {
     background-color: #238636;
     color: var(--text-primary);
     border: none;
     font-weight: 600;
     cursor: pointer;
+    position: relative;
+    z-index: 2;
 }
-.refresh-button:hover {
-    background-color: #2ea043;
+
+button.refresh-button:hover:not(:disabled) {
+    background-color: #2ea043 !important;
+    transform: translateY(-1px);
+    box-shadow: 0 0 6px rgba(46, 160, 67, 0.4);
 }
+
 .refresh-button:disabled {
     background-color: #6c757d;
     cursor: not-allowed;
+    box-shadow: none;
 }
 
-/* Back Button (di halaman detail) */
+
 .back-button {
     background-color: var(--bg-secondary);
     color: var(--text-primary);
     border: 1px solid var(--text-secondary);
-    margin-bottom: var(--spacing-lg); /* Jarak ke konten di bawahnya */
+    margin-bottom: var(--spacing-lg); 
 }
 .back-button:hover {
     background-color: #3b3b5c;
 }
 
-/* --- Filter Form Styling (Menggunakan .filter-grid Anda) --- */
+/* Filter Grid */
 .filter-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -204,14 +202,17 @@ button {
 .filter-grid .apply-filter-button {
     background-color: var(--primary-blue);
     color: var(--text-primary);
-    align-self: flex-end; /* Posisikan tombol di bawah */
+    align-self: flex-end; 
     height: 40px; 
+    transition: all 0.25s ease-in-out;
 }
 .filter-grid .apply-filter-button:hover {
-    background-color: #357ae8;
+    background-color: #357ae8 !important;
+    transform: translateY(-1px);
+    box-shadow: 0 0 6px rgba(53, 122, 232, 0.4);
 }
 
-/* --- Crypto Table Styling (Menggunakan style Anda) --- */
+/* --- TABLE --- */
 .crypto-table-container {
     overflow-x: auto; 
     margin-bottom: var(--spacing-xl);
@@ -285,13 +286,14 @@ button {
     font-size: var(--font-size-sm);
     text-decoration: none;
     border-radius: 4px;
+    transition: all 0.25s ease;
 }
 .detail-button:hover {
     background-color: #357ae8;
+    transform: translateY(-1px);
 }
 
-/* --- Portfolio Calculator Styling (Gabungan) --- */
-/* Menggunakan .card sebagai container */
+/* --- PORTFOLIO --- */
 .portfolio-card h4 {
     margin-bottom: var(--spacing-md);
     color: var(--text-primary);
@@ -311,20 +313,26 @@ button {
     background-color: #357ae8;
 }
 
-.portfolio-card .total-value-display {
-    text-align: center;
-    font-size: var(--font-size-lg);
-    font-weight: bold;
-    color: var(--primary-blue); 
-    background-color: var(--light-blue); /* Latar belakang terang untuk kontras */
-    padding: var(--spacing-sm);
-    border-radius: 5px;
-    color: #1a1a2e; /* Teks gelap di background terang */
+/* --- COMPARE SECTION --- */
+.compare-widget {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: var(--spacing-lg);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    margin-top: 27px;
 }
 
+.card .compare-widget {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
 
-/* --- Compare Cryptos Widget Styling (Gabungan) --- */
-/* Menggunakan .card sebagai container */
+.card.compare-widget {
+    margin-top: 27px;
+}
+
 .compare-widget h4 {
     margin-bottom: var(--spacing-md);
     color: var(--text-primary);
@@ -393,8 +401,7 @@ button {
     background-color: #218838;
 }
 
-
-/* --- Detail Page Styling (Gabungan) --- */
+/* --- DETAIL PAGE --- */
 .detail-header-section {
     display: flex;
     align-items: center;
@@ -415,7 +422,6 @@ button {
     font-size: var(--font-size-lg);
 }
 
-/* Menggunakan .card untuk styling chart-container dari kode Anda */
 .chart-container {
     background-color: var(--bg-secondary);
     padding: 25px;
@@ -430,22 +436,20 @@ button {
     color: var(--text-primary);
 }
 
-
-/* --- Media Query (Hanya 1) --- */
+/* --- RESPONSIVE --- */
 @media (max-width: 768px) {
-    .app-navbar { /* Navbar Anda di mobile */
+    .app-navbar { 
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
     }
 
-    .filter-grid { /* Filter Anda di mobile */
+    .filter-grid { 
         grid-template-columns: 1fr;
     }
 
-    /* Ini adalah trik untuk membuat tabel responsif di mobile */
     .crypto-table thead {
-        display: none; /* Sembunyikan header tabel */
+        display: none; 
     }
     
     .crypto-table tr {
@@ -457,7 +461,7 @@ button {
 
     .crypto-table td {
         display: block;
-        text-align: right; /* Ratakan kanan data */
+        text-align: right;
         padding-left: 50%;
         position: relative;
         border-bottom: 1px solid var(--border-color);
@@ -466,8 +470,7 @@ button {
     .crypto-table td:last-child {
         border-bottom: none;
     }
-
-    /* 'data-label' diambil dari komponen JSX untuk label */
+    
     .crypto-table td::before {
         content: attr(data-label);
         position: absolute;
@@ -480,3 +483,5 @@ button {
         color: var(--primary-blue);
     }
 }
+
+
