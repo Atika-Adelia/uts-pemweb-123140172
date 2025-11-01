@@ -1,9 +1,7 @@
-// src/components/FilterForm.jsx
 import React, { useState } from 'react';
 import SearchForm from './SearchForm.jsx';
 
 const FilterForm = ({ onFilterChange }) => {
-    // ... (state Anda tetap sama)
     const [name, setName] = useState(''); 
     const [minPrice, setMinPrice] = useState('');
     const [maxPrice, setMaxPrice] = useState('');
@@ -11,15 +9,20 @@ const FilterForm = ({ onFilterChange }) => {
     const [volumeRange, setVolumeRange] = useState(0);
 
     const handleSubmit = (e) => {
-        // ... (logika submit Anda tetap sama)
+        e.preventDefault(); 
+
+        onFilterChange({ 
+            name, 
+            minPrice: parseFloat(minPrice) || 0, 
+            maxPrice: parseFloat(maxPrice) || Infinity, 
+            sort, 
+            volumeRange: parseInt(volumeRange) 
+        });
     };
 
     return (
         <form onSubmit={handleSubmit} className="filter-grid"> 
-            
-            {/* --- KOTAK 1: FILTER INPUTS & TOMBOL --- */}
             <div className="filter-inputs-box card"> 
-                {/* Min Price */}
                 <div className="filter-group">
                     <label htmlFor="min-price">Min Price (USD)</label>
                     <input
@@ -31,7 +34,6 @@ const FilterForm = ({ onFilterChange }) => {
                         min="0"
                     />
                 </div>
-                {/* Max Price */}
                 <div className="filter-group">
                     <label htmlFor="max-price">Max Price (USD)</label>
                     <input
@@ -43,7 +45,6 @@ const FilterForm = ({ onFilterChange }) => {
                         min={minPrice || "0"}
                     />
                 </div>
-                {/* Market Cap */}
                 <div className="filter-group">
                     <label htmlFor="sort-by">Market Cap (Sort)</label>
                     <select id="sort-by" value={sort} onChange={(e) => setSort(e.target.value)}> 
@@ -52,7 +53,6 @@ const FilterForm = ({ onFilterChange }) => {
                         <option value="price_asc">Price (Low-High)</option>
                     </select>
                 </div>
-                {/* 24h Volume */}
                 <div className="filter-group">
                     <label>Min 24h Volume: {volumeRange.toLocaleString()} USD</label>
                     <input
@@ -64,25 +64,17 @@ const FilterForm = ({ onFilterChange }) => {
                         onChange={(e) => setVolumeRange(parseInt(e.target.value))}
                     />
                 </div>
-
-                {/* --- PINDAHKAN TOMBOL KE SINI --- */}
                 <button type="submit" className="apply-filter-button">
                     Filter 
                 </button>
-                {/* ------------------------------- */}
 
-            </div> {/* END filter-inputs-box */}
-            
-            {/* --- KOTAK 2: HANYA SEARCH INPUT --- */}
+            </div> 
             <div className="search-and-button-box card"> 
-                {/* Search Input */}
                 <SearchForm 
                     value={name} 
                     onChange={(e) => setName(e.target.value)} 
                 />
-                
-                {/* !!! TOMBOL FILTER DIPINDAHKAN DARI SINI !!! */}
-            </div> {/* END search-and-button-box */}
+            </div> 
 
         </form>
     );
