@@ -5,7 +5,6 @@ const Navbar = () => {
     return (
         <nav className="app-navbar"> 
             <div className="navbar-logo">
-                {/* <img src="%PUBLIC_URL%/logo192.png" alt="CryptoTracker Logo" style={{height: '30px', marginRight: '10px'}}/>  */}
                 <span className="app-title">CryptoTracker</span>
             </div>
             
@@ -14,10 +13,10 @@ const Navbar = () => {
                     <NavLink to="/" end>Dashboard</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/portfolio">Portfolio</NavLink>
+                    <NavLink to="/compare">Compare</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/compare">Compare</NavLink>
+                    <NavLink to="/portfolio">Portfolio</NavLink>
                 </li>
             </ul>
         </nav>

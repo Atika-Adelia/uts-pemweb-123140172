@@ -44,7 +44,7 @@ const FilterForm = ({ onFilterChange }) => {
                        onChange={(e) => setVolumeRange(parseInt(e.target.value))} />
             </label>
             
-            <button type="submit" className="submit-btn">Filter</button>
+            <button type="submit" className="apply-filter-button">Filter</button>
         </form>
     );
 };

@@ -6,7 +6,7 @@ const RefreshButton = ({ onClick, loading }) => {
             onClick={onClick} 
             disabled={loading}
             aria-label={loading ? "Refreshing data" : "Refresh data"} 
-            className="refresh-btn"
+            className="refresh-button"
         >
             {loading ? '🔄 Loading...' : 'Refresh Data'} 
         </button>
