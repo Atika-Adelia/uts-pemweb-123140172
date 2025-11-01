@@ -34,16 +34,18 @@ const DashboardHome = ({ data, loading, error, fetchData }) => {
 
     }, [data, tableFilter]); 
 
-    if (loading) return <div className="main-content"><h2>Memuat Data Market...</h2></div>; 
+    if (loading) return <div className="main-content"><h2>Memuat Data...</h2></div>; 
     
-    if (error) return (
-        <div className="main-content" style={{ color: '#ea3943', backgroundColor: '#ffe6e6', padding: '20px', borderRadius: '8px' }}>
-            <h2>⚠️ Koneksi API Gagal</h2>
-            <p><strong>Pesan:</strong> {error}</p>
-            <p>Silakan tunggu 1-2 menit dan coba muat ulang data.</p>
-            <RefreshButton onClick={fetchData} loading={loading} />
-        </div>
-    ); 
+    if (error) {
+        return (
+          <div style={{ backgroundColor: 'Yellow', color: 'red', padding: '30px', borderRadius: '8px' }}>
+            <h2>❌ Koneksi API Gagal</h2>
+            <p>Pesan: {error.message}</p>
+            <p>Silakan tunggu 1–2 menit dan coba muat ulang data</p>
+            <button onClick={fetchData}>Refresh Data</button>
+          </div>
+        );
+      } 
 
     return (
         <div className="main-content">

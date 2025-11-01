@@ -26,7 +26,7 @@ const CompareWidget = ({ allCoins }) => {
 
     return (
         <div className="card compare-widget">
-            <h4>Compare Cryptos</h4>
+            <h4>📄 Compare Cryptos</h4>
         
             {compareList.map(coinId => {
                 const coin = allCoins.find(c => c.id === coinId);

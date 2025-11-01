@@ -11,7 +11,7 @@ const CryptoTable = ({ data }) => {
                     <th>Name</th>
                     <th>Price</th> 
                     <th>Market Cap</th>
-                    <th>24h% Change</th>
+                    <th>24h%</th>
                     <th>Action</th>
                 </tr>
             </thead>
