@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,119 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+@media (max-width: 768px) {
+  .crypto-table,
+  .crypto-table thead,
+  .crypto-table tbody,
+  .crypto-table tr,
+  .crypto-table th,
+  .crypto-table td {
+    display: revert !important;
+  }
+
+  .crypto-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .crypto-table {
+    width: 100%;
+    border-collapse: collapse;
+    white-space: nowrap; 
+  }
+
+  .crypto-table th,
+  .crypto-table td {
+    padding: 6px 10px;
+    font-size: 13px;
+    border-bottom: 1px solid #333;
+    text-align: left;
+  }
+
+  .crypto-table::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .crypto-table::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 3px;
+  }
+
+  .crypto-table::-webkit-scrollbar-track {
+    background: #222;
+  }
 }
+
+.app-navbar {
+  width: 100vw; 
+  left: 0;
+  right: 0;
+  top: 0;
+  background-color: var(--bg-secondary, #121212);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  box-sizing: border-box;
+  position: sticky;
+  z-index: 1000;
+}
+
+@media (max-width: 768px) {
+  .app-navbar {
+    border-radius: 0 !important;
+    width: 100%;
+    padding: 12px 16px;
+  }
+}
+
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--bg-primary, #0b0b0b);
+  overflow-x: hidden;
+}
+
+.main-content {
+  flex: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  border-spacing: 0;
+}
+
+th, td {
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--border-color, #2f3742);
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 12px;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  th, td {
+    padding: 8px 6px;
+    font-size: 0.9rem;
+  }
+}
+

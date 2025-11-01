@@ -9,6 +9,7 @@ import PortfolioCalculator from './components/PortfolioCalculator.jsx';
 import CompareWidget from './components/Compare.jsx'; 
 import Navbar from './components/Header.jsx'; 
 import './index.css'; 
+import './App.css';
 
 const DashboardHome = ({ data, loading, error, fetchData }) => {
     const [tableFilter, setTableFilter] = useState({ name: '', minPrice: 0, maxPrice: Infinity, sort: 'market_cap_desc', volumeRange: 0 });
