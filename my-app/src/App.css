@@ -39,6 +39,13 @@
   .crypto-table::-webkit-scrollbar-track {
     background: #222;
   }
+
+  .comparison-charts-grid {
+    grid-template-columns: 1fr;
+}
+
+
+
 }
 
 .app-navbar {
@@ -161,23 +168,37 @@ td {
   }
 }
 
-.filter-grid {
+.filter-box-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
-  width: 100%;
-  margin-bottom: 20px;
-  box-sizing: border-box;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  align-items: flex-end; 
+  box-shadow: 0 0 12px rgba(255, 217, 0, 0.6);
 }
 
-.filter-inputs-box {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-  background: var(--bg-secondary, #161b22);
-  border-radius: 12px;
-  padding: 20px;
-  box-sizing: border-box;
+.filter-box-grid .full-width {
+  grid-column: 1 / -1;
+}
+
+.filter-box-grid .apply-filter-button {
+  background-color: #f7ea59;
+  color: #000000;
+  width: 100%; 
+  height: 40px; 
+}
+.filter-box-grid .apply-filter-button:hover {
+  background-color: #f79f2e; 
+}
+
+.filter-box-grid .full-width input[type="text"] {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .filter-box-grid { 
+      grid-template-columns: 1fr; 
+  }
 }
 
 .apply-filter-button {
@@ -199,7 +220,6 @@ td {
   background-color: #2ea043;
 }
 
-/* Input / select base style biar seragam */
 input,
 select {
   width: 100%;

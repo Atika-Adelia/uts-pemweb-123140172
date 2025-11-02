@@ -1,36 +1,22 @@
 import React from 'react';
-import { Search } from "lucide-react";
+import { Search } from 'lucide-react'; 
 
 const SearchForm = ({ value, onChange }) => {
     return (
-        <div className="filter-group" style={{ position: 'relative', width: '100%' }}>
-            <Search 
-                size={20} 
-                color="#888" 
-                style={{ 
-                    position: 'absolute', 
-                    left: '10px', 
-                    top: '37%', 
-                    transform: 'translateY(-50%)' 
-                }} 
-            />
+        <div className="filter-group">
+            <label htmlFor="search-coin">Search Coin Name</label>
 
-            <input
-                id="search-coin"
-                type="text"
-                placeholder="Search Coin Name"
-                value={value}
-                onChange={onChange}
-                style={{
-                    paddingLeft: '35px',
-                    height: '50px',
-                    width: '100%',
-                    borderRadius: '8px',
-                    border: '1px solid #FFD700',
-                    outline: 'none',
-                    fontSize: '14px',
-                }}
-            />
+            <div className="search-input-wrapper">
+                <Search className="search-icon" size={18} /> 
+                
+                <input
+                    id="search-coin"
+                    type="text"
+                    placeholder="Search Coin Name" 
+                    value={value}
+                    onChange={onChange}
+                />
+            </div>
         </div>
     );
 };

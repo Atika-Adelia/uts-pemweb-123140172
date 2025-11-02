@@ -8,11 +8,9 @@ import DetailCard from './components/DetailCard.jsx';
 import PortfolioCalculator from './components/PortfolioCalculator.jsx'; 
 import CompareWidget from './components/Compare.jsx'; 
 import Navbar from './components/Header.jsx'; 
-
 import { TrendingUp, Wallet, XCircle } from "lucide-react";
 import { ArrowRightLeft} from "lucide-react";
 import { Calculator } from "lucide-react";
-
 import './index.css'; 
 import './App.css';
 
@@ -30,7 +28,7 @@ const DashboardHome = ({ data, loading, error, fetchData }) => {
         const { name, minPrice, maxPrice, volumeRange, sort } = tableFilter;
 
         let filtered = data.filter(coin => {
-            const nameMatch = coin.name.toLowerCase().includes(name.toLowerCase());
+            const nameMatch = (coin.name || '').toLowerCase().includes(name.toLowerCase());
             const priceMatch = coin.current_price >= minPrice && coin.current_price <= maxPrice;
             const volumeMatch = coin.total_volume >= volumeRange;
             return nameMatch && priceMatch && volumeMatch;
@@ -61,7 +59,7 @@ const DashboardHome = ({ data, loading, error, fetchData }) => {
 
     return (
         <div className="main-content">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px', marginTop: 'var(--spacing-md)' }}>
                 <h2 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <TrendingUp size={30} color="#d4af37" /> 
                     LIVE CRYPTO TRACKER
@@ -71,7 +69,7 @@ const DashboardHome = ({ data, loading, error, fetchData }) => {
 
             <FilterForm onFilterChange={setTableFilter} />
 
-            <h2 style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: 'var(--spacing-xl)' }}>
+            <h2 style={{ display: 'flex', alignItems: 'center', gap: '8px'}}>
                  <Wallet size={30} color="#d4af37" />
                  CRYPTOCURRENCY MARKET LIST
             </h2>
@@ -82,9 +80,7 @@ const DashboardHome = ({ data, loading, error, fetchData }) => {
                 <ArrowRightLeft size={30} color="#d4af37" />
                 COMPARE CRYPTOS
             </h2>
-            <div className="card compare-widget">
                 <CompareWidget allCoins={data} /> 
-            </div>
 
             <h2 style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: 'var(--spacing-xl)' }}>
                 <Calculator size={30} color="#d4af37" />
@@ -135,9 +131,7 @@ const App = () => {
                                     <ArrowRightLeft size={30} color="#d4af37" />
                                     COMPARE CRYPTOS
                                 </h2>
-                                <div className="card compare-widget">
                                     <CompareWidget allCoins={data} />
-                                </div>
                             </div>
                         } 
                     />
