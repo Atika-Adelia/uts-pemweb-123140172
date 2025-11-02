@@ -8,70 +8,109 @@ import DetailCard from './components/DetailCard.jsx';
 import PortfolioCalculator from './components/PortfolioCalculator.jsx'; 
 import CompareWidget from './components/Compare.jsx'; 
 import Navbar from './components/Header.jsx'; 
+import SearchForm from './components/SearchForm.jsx';
+import { TrendingUp, Wallet, XCircle } from "lucide-react";
+import { ArrowRightLeft} from "lucide-react";
+import { Calculator } from "lucide-react";
+
 import './index.css'; 
 import './App.css';
 
 const DashboardHome = ({ data, loading, error, fetchData }) => {
-    const [tableFilter, setTableFilter] = useState({ name: '', minPrice: 0, maxPrice: Infinity, sort: 'market_cap_desc', volumeRange: 0 });
+    const [tableFilter, setTableFilter] = useState({ 
+        name: '', 
+        minPrice: 0, 
+        maxPrice: Infinity, 
+        sort: 'market_cap_desc', 
+        volumeRange: 0 
+    });
+
+    const handleNameChange = (e) => {
+        setTableFilter(prev => ({ ...prev, name: e.target.value }));
+    };
 
     const filteredAndSortedData = useMemo(() => {
         if (!data || data.length === 0) return [];
-        
-        const { name, minPrice, maxPrice, volumeRange, sort } = tableFilter; 
+        const { name, minPrice, maxPrice, volumeRange, sort } = tableFilter;
 
-        let filtered = data
-            .filter(coin => {
-                const nameMatch = coin.name.toLowerCase().includes(name.toLowerCase());
-                const priceMatch = coin.current_price >= minPrice && coin.current_price <= maxPrice;
-                const volumeMatch = coin.total_volume >= volumeRange;
-                return nameMatch && priceMatch && volumeMatch;
-            });
+        let filtered = data.filter(coin => {
+            const nameMatch = coin.name.toLowerCase().includes(name.toLowerCase());
+            const priceMatch = coin.current_price >= minPrice && coin.current_price <= maxPrice;
+            const volumeMatch = coin.total_volume >= volumeRange;
+            return nameMatch && priceMatch && volumeMatch;
+        });
 
         return filtered.sort((a, b) => {
             if (sort === 'price_desc') return b.current_price - a.current_price;
             if (sort === 'price_asc') return a.current_price - b.current_price;
             return b.market_cap - a.market_cap;
         });
+    }, [data, tableFilter]);
 
-    }, [data, tableFilter]); 
+    if (loading) return <div className="main-content"><h2>Memuat Data...</h2></div>;
 
-    if (loading) return <div className="main-content"><h2>Memuat Data...</h2></div>; 
-    
     if (error) {
         return (
-          <div style={{ backgroundColor: 'Yellow', color: 'red', padding: '30px', borderRadius: '8px' }}>
-            <h2>❌ Koneksi API Gagal</h2>
-            <p>Pesan: {error.message}</p>
-            <p>Silakan tunggu 1–2 menit dan coba muat ulang data</p>
-            <button onClick={fetchData}>Refresh Data</button>
-          </div>
+            <div style={{ backgroundColor: 'Yellow', color: 'red', padding: '30px', borderRadius: '8px' }}>
+                <h2 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <XCircle size={22} color="red" />
+                    Koneksi API Gagal
+                    </h2>
+            
+                    <p>Pesan: {error.message}</p>
+                    <p>Silakan tunggu 1–2 menit dan coba muat ulang data</p>
+                    <button onClick={fetchData}>Refresh Data</button>
+            </div>
+
         );
-      } 
+    }
 
     return (
         <div className="main-content">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                <h2>LIVE CRYPTO TRACKER</h2>
+            <h2 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <TrendingUp size={30} color="#f9b233" />
+                    LIVE CRYPTO TRACKER
+                    </h2>
                 <RefreshButton onClick={fetchData} loading={loading} />
             </div>
-        
-            <FilterForm onFilterChange={setTableFilter} />
 
-            <h2>💰 CRYPTOCURRENCY MARKET LIST</h2>
-            
-            <DataTable data={filteredAndSortedData} /> 
+            <FilterForm onFilterChange={(filters) => setTableFilter(prev => ({ ...prev, ...filters }))} />
+
+            <h2 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                 <Wallet size={30} color="#f9b233" />
+                    CRYPTOCURRENCY MARKET LIST
+                </h2>
+
+            <div className="search-top-wrapper">
+                <SearchForm 
+                    value={tableFilter.name} 
+                    onChange={handleNameChange} 
+                />
+                <DataTable data={filteredAndSortedData} /> 
+            </div>
+
+            <h2 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <ArrowRightLeft size={30} color="#f9b233" />
+                COMPARE CRYPTOS
+            </h2>
 
             <div className="card compare-widget">
                 <CompareWidget allCoins={data} /> 
             </div>
-          
+
+            <h2 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Calculator size={30} color="#f9b233" />
+            PORTFOLIO CALCULATOR
+            </h2>
+
             <div className="card portfolio-card">
                 <PortfolioCalculator allCoins={data} /> 
             </div>
-
         </div>
     );
 };
+
 
 const App = () => {
     const { data, loading, error, fetchData } = useCryptoData(); 

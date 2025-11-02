@@ -46,7 +46,7 @@
   left: 0;
   right: 0;
   top: 0;
-  background-color: var(--bg-secondary, #121212);
+  background-color: var(--bg-secondary, #ffee33);
   display: flex;
   align-items: center;
   justify-content: space-between;
