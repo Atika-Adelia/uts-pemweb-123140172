@@ -26,7 +26,7 @@ const SearchForm = ({ value, onChange }) => {
                     height: '50px',
                     width: '100%',
                     borderRadius: '8px',
-                    border: '1px solid #ccc',
+                    border: '1px solid #FFD700',
                     outline: 'none',
                     fontSize: '14px',
                 }}

@@ -4,7 +4,8 @@ import { formatCurrency, formatPercent } from '../utils/formatter';
 
 const CryptoTable = ({ data }) => {
     return (
-        <div className="rypto-table-wrapper">
+        <div className="crypto-table-container">
+            <div className="crypto-table-scroll">
         <table className="crypto-table" role="table">
             <thead>
                 <tr>
@@ -47,6 +48,7 @@ const CryptoTable = ({ data }) => {
                 )}
             </tbody>
         </table>
+        </div>
         </div>
     );
 };

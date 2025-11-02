@@ -46,6 +46,11 @@ body {
     display: flex;
     flex-direction: column; 
     min-height: 100vh;
+    background: radial-gradient(
+        ellipse at top, 
+        var(--bg-secondary) 0%, /* Mulai dengan warna #141414 di atas */
+        var(--bg-primary) 70%  /* Berakhir dengan warna #0b0b0b di bawah */
+    );
 }
 
 .app-navbar { 
@@ -203,9 +208,35 @@ button.refresh-button:hover:not(:disabled) {
 }
 
 .crypto-table-container {
-    overflow-x: auto; 
-    margin-bottom: var(--spacing-xl);
-}
+    position: relative;
+    width: 100%;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(255, 217, 0, 0.855);
+    padding: 16px;
+    overflow: hidden; 
+  }
+  
+  .crypto-table-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 10px;
+  }
+  
+  .crypto-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px; 
+  }
+  
+  .crypto-table thead th {
+    position: sticky;
+    top: 0;
+    background-color: var(--bg-primary);
+    z-index: 2;
+  }
+  
 
 .crypto-table {
     width: 100%;
@@ -214,7 +245,6 @@ button.refresh-button:hover:not(:disabled) {
     border-radius: 12px;
     overflow: hidden;
     border: 1px solid var(--border-color);
-    box-shadow: 0 0 10px rgba(255, 217, 0, 0.855);
 }
 
 .crypto-table th,
@@ -230,6 +260,20 @@ button.refresh-button:hover:not(:disabled) {
     font-weight: 600;
     text-transform: uppercase;
     font-size: 0.85rem;
+}
+
+.crypto-table td {
+    color: var(--text-primary);
+    font-size: var(--font-size-sm); 
+}
+
+.crypto-table td.positive {
+    color:  #00ff22; 
+    font-weight: 500;
+}
+.crypto-table td.negative {
+    color: #ff0000; 
+    font-weight: 500;
 }
 
 .crypto-table tbody tr:hover {
@@ -257,16 +301,6 @@ button.refresh-button:hover:not(:disabled) {
 .crypto-table .coin-symbol {
     color: var(--text-secondary);
     font-size: var(--font-size-sm);
-}
-
-.positive {
-    color: #00ff22;
-    font-weight: 500;
-}
-
-.negative {
-    color: #ff0000;
-    font-weight: 500;
 }
 
 .detail-button {
@@ -431,16 +465,24 @@ button.refresh-button:hover:not(:disabled) {
 
 .chart-container {
     background-color: var(--primary-blue);
-    padding: 25px;
     border-radius: 12px;
     border: 1px solid var(--border-color);
     box-shadow: 0 0 10px rgba(255, 217, 0, 0.855);
     margin-top: 30px;
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+}
+
+.chart-wrapper {
+    position: relative; /* Diperlukan oleh Chart.js */
+    height: 400px; /* Terapkan tinggi di sini */
 }
 
 .chart-container h3 {
     margin-bottom: var(--spacing-md);
     color: var(--bg-primary);
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
 }
 
 @media (max-width: 768px) {
@@ -488,6 +530,15 @@ button.refresh-button:hover:not(:disabled) {
         font-weight: bold;
         color: var(--primary-blue);
     }
+}
+
+.positive {
+    color: #00ff22;
+    font-weight: 500;
+}
+.negative {
+    color: #ff0000;
+    font-weight: 500;
 }
 
 .filter-grid {
@@ -565,6 +616,7 @@ button.refresh-button:hover:not(:disabled) {
     outline: none;
   }
   
+
   @media (max-width: 768px) {
     .search-top-wrapper {
       padding: 0 12px;

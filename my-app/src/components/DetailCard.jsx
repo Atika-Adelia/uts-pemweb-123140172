@@ -42,22 +42,30 @@ const DetailCard = ({ allCoins }) => {
 
     const chartOptions = {
         responsive: true,
+        maintainAspectRatio: false,
+        layout: {
+            padding: {
+                top: 10,
+                left: 10,
+                right: 20, 
+                bottom: 10
+            }
+        },
         plugins: {
             legend: { position: 'top', labels: { color: 'var(--text-secondary)' } },
             title: { display: true, text: `${coin.name} Harga 7 Hari Terakhir`, color: 'var(--text-primary)' },
         },
         scales: {
-            x: { ticks: { color: 'var(--text-secondary)' }, grid: { color: 'rgba(255, 255, 255, 0.1)' } },
-            y: { ticks: { color: 'var(--text-secondary)' }, grid: { color: 'rgba(255, 255, 255, 0.1)' } },
+            x: { ticks: { color: 'var(--text-secondary)' }, 
+                    maxRotation: 90, 
+                    minRotation: 45, 
+                grid: { color: 'rgba(0, 0, 0, 0.2)' } },
+            y: { ticks: { color: 'var(--text-secondary)' }, grid: { color: 'rgba(0, 0, 0, 0.2)' } },
         }
     };
 
     return (
         <div className="main-content">
-            <button onClick={() => navigate('/')} className="back-button" style={{ marginBottom: 'var(--spacing-xl)' }}>
-                &larr; Kembali ke Dashboard
-            </button>
-
             <div className="card detail-header-section">
                 <img src={coin.image} alt={`${coin.name} logo`} />
                 <h1>{coin.name} ({coin.symbol.toUpperCase()})</h1>
@@ -72,8 +80,14 @@ const DetailCard = ({ allCoins }) => {
 
             <div className="card chart-container">
                 <h3>Perkembangan Harga</h3>
+                <div className="chart-wrapper">
                 <Line data={chartData} options={chartOptions} />
+                </div>
             </div>
+
+            <button onClick={() => navigate('/')} className="back-button" style={{ marginBottom: 'var(--spacing-xl)' }}>
+                &larr; Kembali 
+            </button>
         </div>
     );
 };
