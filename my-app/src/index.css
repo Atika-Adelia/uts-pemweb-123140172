@@ -516,6 +516,7 @@ button.refresh-button:hover:not(:disabled) {
     justify-content: space-between; 
     padding: var(--spacing-lg);
     box-shadow: 0 0 10px rgba(255, 217, 0, 0.855);
+    height: fit-content;
 }
 
 .search-and-button-box .filter-group {
@@ -532,3 +533,4 @@ button.refresh-button:hover:not(:disabled) {
         grid-template-columns: 1fr;
     }
 }
+

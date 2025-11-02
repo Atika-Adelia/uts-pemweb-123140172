@@ -10,7 +10,7 @@ const PortfolioCalculator = ({ allCoins }) => {
 
     return (
         <> 
-            <h4>💰 Portfolio Calculator</h4>
+            <h4>💴 PROTFOLIO CALCULATOR</h4>
 
             <label htmlFor="select-crypto">Select Cryptocurrency</label>
             <select 

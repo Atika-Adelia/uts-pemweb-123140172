@@ -51,11 +51,13 @@ const DashboardHome = ({ data, loading, error, fetchData }) => {
     return (
         <div className="main-content">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                <h2>💰 Cryptocurrency Market List</h2>
+                <h2>LIVE CRYPTO TRACKER</h2>
                 <RefreshButton onClick={fetchData} loading={loading} />
             </div>
         
             <FilterForm onFilterChange={setTableFilter} />
+
+            <h2>💰 CRYPTOCURRENCY MARKET LIST</h2>
             
             <DataTable data={filteredAndSortedData} /> 
 

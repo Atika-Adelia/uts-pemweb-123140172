@@ -1,42 +1,3 @@
-/* .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
-
 @media (max-width: 768px) {
   .crypto-table,
   .crypto-table thead,
@@ -55,7 +16,7 @@
   .crypto-table {
     width: 100%;
     border-collapse: collapse;
-    white-space: nowrap; 
+    white-space: nowrap;
   }
 
   .crypto-table th,
@@ -81,7 +42,7 @@
 }
 
 .app-navbar {
-  width: 100vw; 
+  width: 100vw;
   left: 0;
   right: 0;
   top: 0;
@@ -128,7 +89,8 @@ table {
   border-spacing: 0;
 }
 
-th, td {
+th,
+td {
   padding: 12px 8px;
   border-bottom: 1px solid var(--border-color, #2f3742);
   white-space: nowrap;
@@ -145,9 +107,129 @@ th, td {
     width: 100%;
   }
 
-  th, td {
+  th,
+  td {
     padding: 8px 6px;
     font-size: 0.9rem;
   }
 }
 
+.crypto-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  border-spacing: 0;
+}
+
+.crypto-table th,
+.crypto-table td {
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--border-color, #2f3742);
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .crypto-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .crypto-table {
+    min-width: 600px;
+    border-collapse: collapse;
+    white-space: nowrap;
+  }
+
+  .crypto-table th,
+  .crypto-table td {
+    padding: 8px 10px;
+    font-size: 13px;
+    border-bottom: 1px solid #333;
+  }
+
+  .crypto-table-wrapper::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .crypto-table-wrapper::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 3px;
+  }
+
+  .crypto-table-wrapper::-webkit-scrollbar-track {
+    background: #222;
+  }
+}
+
+.filter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  width: 100%;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.filter-inputs-box {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  background: var(--bg-secondary, #161b22);
+  border-radius: 12px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.apply-filter-button {
+  width: 100%;
+  justify-self: stretch;
+  margin-top: auto;
+  padding: 12px 0;
+  background-color: #238636;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.apply-filter-button:hover {
+  background-color: #2ea043;
+}
+
+/* Input / select base style biar seragam */
+input,
+select {
+  width: 100%;
+}
+
+.apply-filter-button {
+  width: 100%;
+  max-width: 100%;
+  background: #f5c400;
+  color: #000;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.apply-filter-button:hover {
+  background: #ffd633;
+}
+
+.apply-filter-button:active {
+  transform: scale(0.98);
+}
+
+.filter-inputs-box .apply-filter-button {
+  margin-top: 8px;
+}
