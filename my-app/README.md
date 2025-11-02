@@ -36,7 +36,7 @@ npm start
 ## Screenshot Aplikasi 
 
 1. Tampilan Utama saat user membuka aplikasi 
-![Tampilan Utama](assets/tampilanawal.png)
+![Tampilan Utama](assets/tampilanAwal.png)
 
 2. Tampilan fitur filter 
 ![Tampilan Fitur Filter](assets/filter.png)
