@@ -3,13 +3,15 @@ import { formatCurrency } from '../utils/formatter';
 
 const PortfolioCalculator = ({ allCoins }) => {
     const [selectedCoinId, setSelectedCoinId] = useState('bitcoin'); 
-    const [amount, setAmount] = useState(0); 
+    const [amount, setAmount] = useState(''); 
     const selectedCoin = allCoins.find(c => c.id === selectedCoinId);
     const currentPrice = selectedCoin ? selectedCoin.current_price : 0; 
-    const totalValue = amount * currentPrice; 
+    const totalValue = (parseFloat(amount) || 0) * currentPrice; 
 
     return (
         <> 
+            <h4>💰 Portfolio Calculator</h4>
+
             <label htmlFor="select-crypto">Select Cryptocurrency</label>
             <select 
                 id="select-crypto"
@@ -28,9 +30,10 @@ const PortfolioCalculator = ({ allCoins }) => {
                 id="coin-amount"
                 type="number"
                 min="0" 
-                value={amount}
+                value={amount} 
                 placeholder="0.00"
-                onChange={(e) => setAmount(parseFloat(e.target.value) || 0)} 
+                
+                onChange={(e) => setAmount(e.target.value)} 
             />
 
             <p>Harga Per Koin: <strong>{formatCurrency(currentPrice)}</strong></p>
